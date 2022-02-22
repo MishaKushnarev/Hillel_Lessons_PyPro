@@ -28,6 +28,7 @@ def unwrapper(records: List) -> None:
 
 
 def get_invoice_items() -> List:
+
     query_sql = f'SELECT UnitPrice, Quantity FROM invoice_items'
 
     return execute_query(query_sql)

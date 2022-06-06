@@ -3,6 +3,7 @@
 ## Formatters
 
 1.black
+
 2.isort
 
 ## Linter

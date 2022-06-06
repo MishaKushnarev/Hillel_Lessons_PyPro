@@ -6,9 +6,11 @@
 2.isort
 
 ## Linter
+
 1.flake8
 
 ## Usage
+
 ```
 black ./
 black --check ./

@@ -2,4 +2,7 @@
 venv/  
 
 # Editors 
-.idea/ 
+.idea/
+
+# Other files
+/lesson4_iter_gener_functions/rockyou.txt

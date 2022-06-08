@@ -26,3 +26,5 @@ for line in read_lines_find_user_generator():
     if choice == "y":
         result.append(line)
         count_items += 1
+    else:
+        pass    

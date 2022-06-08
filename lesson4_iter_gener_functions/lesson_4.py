@@ -20,7 +20,6 @@ def read_lines_find_user_generator() -> Generator:
                 continue
 
 
-
 for line in read_lines_find_user_generator():
     print("Now password is: ", line)
     choice = str(input("Keep? (y/n): "))

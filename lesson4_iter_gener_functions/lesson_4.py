@@ -6,6 +6,7 @@ SEARCH_KEYWORD = "user"
 result = []
 count_items = int()
 
+
 def read_lines_find_user_generator() -> Generator:
     
     with open(FILENAME, encoding="utf-8") as file:
@@ -25,5 +26,3 @@ for line in read_lines_find_user_generator():
     if choice == "y":
         result.append(line)
         count_items += 1
-    else:
-        pass

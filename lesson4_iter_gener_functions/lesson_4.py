@@ -1,3 +1,4 @@
+from tkinter import Y
 from typing import Generator
 
 
@@ -8,16 +9,16 @@ count_items = int()
 
 
 def read_lines_find_user_generator() -> Generator:
-    
     with open(FILENAME, encoding="utf-8") as file:
         while True:
             line = file.readline()            
             if not line:
-                print("Scanning done! Added", count_items, "items.")
+                print("Scanning done! Added", count_items, "items.\n", result)
                 break
             if SEARCH_KEYWORD in line:
                 yield line.replace("\n", "")                               
                 continue
+
 
 
 for line in read_lines_find_user_generator():

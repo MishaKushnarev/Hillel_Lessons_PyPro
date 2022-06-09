@@ -1,6 +1,5 @@
 from typing import Generator
 
-
 FILENAME = "./lesson4_iter_gener_functions/rockyou.txt"
 SEARCH_KEYWORD = "user"
 result = []
@@ -8,15 +7,14 @@ count_items = int()
 
 
 def read_lines_find_user_generator() -> Generator:
-    with open(FILENAME, encoding="utf-8") as file:
+    with open(FILENAME) as file:
         while True:
-            line = file.readline()            
+            line = file.readline()
             if not line:
-                print("Scanning done! Added", count_items, "items.\n", result)
                 break
-            if SEARCH_KEYWORD in line:
-                yield line.replace("\n", "")                               
-                continue
+            elif SEARCH_KEYWORD in line:
+                yield line.replace("\n", "")
+    print("Scanning done! Added", count_items, "items.\n", result)
 
 
 for line in read_lines_find_user_generator():
@@ -26,4 +24,4 @@ for line in read_lines_find_user_generator():
         result.append(line)
         count_items += 1
     else:
-        pass    
+        pass

@@ -1,6 +1,7 @@
 import os
 import copy
 
+
 LOGGING = True
 SORT_BY_NUMBER = True
 key = "name"
@@ -14,15 +15,15 @@ team: list[dict] = [
 
 
 def repr_players(players: list[dict], sorted: bool, key: str) -> None:
-    print("TEAM:")
+
     if sorted and not key != None:
-        team.sort(key=lambda x: x["number"])
-        log(message="Sort by number")
+        team.sort(key=lambda x: x['number'])
+        log(message=f"TEAM (sort by number):")
         display_team(team)
 
     elif sorted and not key == None:
         team.sort(key=lambda x: x[key])
-        log(message=f"Sort by {key}")
+        log(message=f"TEAM sort by {key}:")
         display_team(team)
 
     else:
@@ -42,25 +43,26 @@ def log(message: str) -> None:
 def add_player(num: int, name: str, age: int) -> None:
     player = {"name": name, "number": num, "age": age}
     checking_result = check_existing_by_number(team, num)
-    if checking_result != True:
-        log(message=f"Adding {player['name']}")
+    if checking_result == False:
+        log(message=f"Player {player['name']} added")
         team.append(player)
         repr_players(team, SORT_BY_NUMBER, key=None)
+    else:
+        print("Err")    
 
 
 def check_existing_by_number(players: list, new_number: int) -> bool:
     for index, player in enumerate(players):
-        if player["number"] == new_number:            
+        if player['number'] == new_number:            
             log(message="Cant add player. Player with this number already exist!")
-            return True
         else:
             return False    
 
 
 def remove_player(players: list[dict], num: int) -> None:
     for index, player in enumerate(players):
-        if player["number"] == num:
-            player_name = player["name"]
+        if player['number'] == num:
+            player_name = player['name']
             del players[index]
             log(message=f"Deleting {player_name}")
 
@@ -83,7 +85,7 @@ def player_update(players: list[dict], num: int) -> None:
         os.system('cls||clear')
         log(message="Number updated!")
         repr_players(team, SORT_BY_NUMBER, key=None)
-        
+
     elif  user_choice == 2:
         new_name = input("Enter new name: ")
         temp_player['name'] = new_name
@@ -103,9 +105,9 @@ def player_update(players: list[dict], num: int) -> None:
 
 def main():
     os.system('cls||clear')
-    # add_player(num=12, name="Cris", age=31)   
+    add_player(num=12, name="Cris", age=31)   
     # repr_players(team, SORT_BY_NUMBER, key=None)
-    player_update(team, 8)
+    # player_update(team, 8)
 
 
 if __name__ == "__main__":

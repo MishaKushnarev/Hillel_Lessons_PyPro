@@ -16,7 +16,7 @@ team: list[dict] = [
 def repr_players(players: list[dict], sorted: bool, key: str) -> None:
 
     if sorted and not key != None:
-        team.sort(key=lambda x: x['number'])
+        team.sort(key=lambda x: x["number"])
         log(message=f"TEAM (sort by number):")
         display_team(team)
 
@@ -47,21 +47,22 @@ def add_player(num: int, name: str, age: int) -> None:
         team.append(player)
         repr_players(team, SORT_BY_NUMBER, key=None)
     else:
-        print("Err")    
+        print("Err")
 
 
 def check_existing_by_number(players: list, new_number: int) -> bool:
     for index, player in enumerate(players):
-        if player['number'] == new_number:            
+        if player["number"] == new_number:
             log(message="Cant add player. Player with this number already exist!")
-        else:
-            return False    
+            return True
+
+        return False
 
 
 def remove_player(players: list[dict], num: int) -> None:
     for index, player in enumerate(players):
-        if player['number'] == num:
-            player_name = player['name']
+        if player["number"] == num:
+            player_name = player["name"]
             del players[index]
             log(message=f"Deleting {player_name}")
 
@@ -69,33 +70,41 @@ def remove_player(players: list[dict], num: int) -> None:
 def player_update(players: list[dict], num: int) -> None:
     for index, player in enumerate(players):
         if player["number"] == num:
-            log(message=f"Selected player: {player['number']} " f"{player['name']}, {player['age']}")
+            log(
+                message=f"Selected player: {player['number']} "
+                f"{player['name']}, {player['age']}"
+            )
             temp_player = player
-    user_choice = int(input('''What do you want to change? \n
+    user_choice = int(
+        input(
+            """What do you want to change? \n
         1 - Number
         2 - Name
         3 - Age
-        Enter: ''' ))
+        Enter: """
+        )
+    )
 
     if user_choice == 1:
         new_number = int(input("Enter new number: "))
-        # check_existing_by_number(players, new_number)
-        temp_player['number'] = new_number
-        os.system('cls||clear')
-        log(message="Number updated!")
-        repr_players(team, SORT_BY_NUMBER, key=None)
+        checking_result = check_existing_by_number(players, new_number)
+        if checking_result == False:
+            temp_player["number"] = new_number
+            os.system("cls||clear")
+            log(message="Number updated!")
+            repr_players(team, SORT_BY_NUMBER, key=None)
 
-    elif  user_choice == 2:
+    elif user_choice == 2:
         new_name = input("Enter new name: ")
-        temp_player['name'] = new_name
-        os.system('cls||clear')
+        temp_player["name"] = new_name
+        os.system("cls||clear")
         log(message="Name updated!")
         repr_players(team, SORT_BY_NUMBER, key=None)
-        
-    elif  user_choice == 3:
+
+    elif user_choice == 3:
         new_age = input("Enter new age: ")
         temp_player["age"] = new_age
-        os.system('cls||clear')
+        os.system("cls||clear")
         log(message="Age updated!")
         repr_players(team, SORT_BY_NUMBER, key=None)
     else:
@@ -103,10 +112,10 @@ def player_update(players: list[dict], num: int) -> None:
 
 
 def main():
-    os.system('cls||clear')
-    add_player(num=12, name="Cris", age=31)   
-    # repr_players(team, SORT_BY_NUMBER, key=None)
-    # player_update(team, 8)
+    os.system("cls||clear")
+    add_player(num=12, name="Cris", age=31)
+    repr_players(team, SORT_BY_NUMBER, key=None)
+    player_update(team, 8)
 
 
 if __name__ == "__main__":

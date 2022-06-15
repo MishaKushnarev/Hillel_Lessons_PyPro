@@ -11,7 +11,6 @@ def reverse_string(func):
         data = func()
         if type(data) == str:
             data[::-1]
-
     return wrapper
 
 

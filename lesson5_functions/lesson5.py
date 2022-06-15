@@ -1,6 +1,5 @@
 import os
 
-
 LOGGING = True
 SORT_BY_NUMBER = True
 key = "name"
@@ -15,12 +14,12 @@ team: list[dict] = [
 
 def repr_players(players: list[dict], sorted: bool, key: str) -> None:
 
-    if sorted and not key != None:
+    if sorted and not key and not None:
         team.sort(key=lambda x: x["number"])
-        log(message=f"TEAM (sort by number):")
+        log(message="TEAM (sort by number):")
         display_team(team)
 
-    elif sorted and not key == None:
+    elif sorted and not None:
         team.sort(key=lambda x: x[key])
         log(message=f"TEAM sort by {key}:")
         display_team(team)
@@ -42,7 +41,7 @@ def log(message: str) -> None:
 def add_player(num: int, name: str, age: int) -> None:
     player = {"name": name, "number": num, "age": age}
     checking_result = check_existing_by_number(team, num)
-    if checking_result == False:
+    if checking_result is False:
         log(message=f"Player {player['name']} added")
         team.append(player)
         repr_players(team, SORT_BY_NUMBER, key=None)
@@ -88,7 +87,7 @@ def player_update(players: list[dict], num: int) -> None:
     if user_choice == 1:
         new_number = int(input("Enter new number: "))
         checking_result = check_existing_by_number(players, new_number)
-        if checking_result == False:
+        if checking_result is False:
             temp_player["number"] = new_number
             os.system("cls||clear")
             log(message="Number updated!")
@@ -114,7 +113,7 @@ def player_update(players: list[dict], num: int) -> None:
 def main():
     os.system("cls||clear")
     add_player(num=12, name="Cris", age=31)
-    repr_players(team, SORT_BY_NUMBER, key=None)
+    repr_players(team, SORT_BY_NUMBER, key)
     player_update(team, 8)
 
 

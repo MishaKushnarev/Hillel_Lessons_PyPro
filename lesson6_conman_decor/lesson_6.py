@@ -10,9 +10,7 @@ def reverse_string(func):
     def wrapper(*args, **kwargs):
         data = func()
         if type(data) == str:
-            result_string = data[::-1]
-        else:
-            pass
+            data[::-1]
 
     return wrapper
 

@@ -1,6 +1,5 @@
 from abc import ABC, abstractclassmethod
 from random import choice
-import os
 
 
 class Shape(ABC):
@@ -48,7 +47,6 @@ def main():
      -  -
       --
     """
-    os.system("cls||clear")
     shape: Shape = get_shape()
     shape.draw()
 

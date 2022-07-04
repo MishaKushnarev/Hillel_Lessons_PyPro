@@ -23,7 +23,7 @@ class Price:
 
 
 def main():
-    # name is defined but not used
+
     rice = Price(100, "UAH")
     buckwheat = Price(90, "UAH")
     add = rice + buckwheat  # noqa: F841

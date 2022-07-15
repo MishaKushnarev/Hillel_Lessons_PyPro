@@ -1,7 +1,7 @@
 import asyncio
 import random
-import aiohttp
 
+import aiohttp
 
 MAX_POKEMON = 100
 SIZE = 1

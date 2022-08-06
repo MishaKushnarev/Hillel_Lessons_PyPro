@@ -50,28 +50,30 @@ if __name__ == "__main__":
     main()
 
 
-async def get_primes_amount(num: int):
-    result = 0
-    counter = []
-    for i in range(2, num + 1):
-        if i % 2 != 0 and i % 3 != 0 and i % 5 != 0 and i % 7 != 0:
-            counter = [i for j in range(11, i + 1) if i % j == 0]
-
-            if len(counter) < 2:
-                result += 1
-                await asyncio.sleep(0)
-
-    print(result)
+async def get_primes_amount(number: int):
+    sum = 0
+    counter = 0
+    for number in number:
+        for num in range(1, number):
+            for i in range(2, num):
+                if num % i == 0:
+                    break
+            else:
+                sum += 1
+                counter += 1
+        print(counter)
+        await asyncio.sleep(0)
+    print(f"Summ is: {sum}")
 
 
 def main(data: list) -> None:
 
-    task = [get_primes_amount(i) for i in data]
+    task = [get_primes_amount(data)]
     event_loop = asyncio.get_event_loop()
     event_loop.run_until_complete(asyncio.gather(*task))
     event_loop.close()
 
 
 if __name__ == "__main__":
-    numbers = [40000, 400, 1000000, 700]
+    numbers = [500, 400, 1000, 700]
     main(numbers)
